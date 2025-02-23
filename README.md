@@ -5,5 +5,3 @@ BBill Breaker is a shell script written to detect external keyboards as they are
 
 This script requires evtest, which is installed by default when ```setup.sh``` is ran.
 
-> [!WARNING]  
-> This was developed on EndeavourOS and tested with the Rubber Ducky built into the Flipper Zero.
