@@ -1,6 +1,6 @@
 # Bill-Breaker
 
-![alt text](https://github.com/the8bitbyte/Bill-Breaker/blob/main/Resources/IMG_8531.png?raw=true)
+![logo](https://github.com/the8bitbyte/Bill-Breaker/blob/main/Resources/IMG_8531.png?raw=true)
 
 Bill Breaker is an anti-Rubber Ducky tool, similar to [Duck Hunt](https://github.com/pmsosa/duckhunt) but made for Linux.
 
