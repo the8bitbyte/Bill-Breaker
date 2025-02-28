@@ -1,3 +1,8 @@
+if [[ $EUID -ne 0 ]]; then
+  echo "This script requires root permission" >&2
+  exit 1
+fi
+
 echo "what type of computer are you using?"
 
 generate_echo() {
@@ -39,29 +44,6 @@ gprint() {
     echo -e "\033[0m"
   fi
 }
-
-install_evtest() { #its likely Bill-Breaker doesnt even work on most of these distros, however better safe the sorry
-  if command -v pacman &>/dev/null; then
-    echo "Detected Arch-based system. Installing evtest..."
-    sudo pacman -S --noconfirm evtest
-  elif command -v apt &>/dev/null; then
-    echo "Detected Debian/Ubuntu-based system. Installing evtest..."
-    sudo apt update && sudo apt install -y evtest
-  elif command -v dnf &>/dev/null; then
-    echo "Detected Fedora-based system. Installing evtest..."
-    sudo dnf install -y evtest
-  elif command -v zypper &>/dev/null; then
-    echo "Detected openSUSE-based system. Installing evtest..."
-    sudo zypper install -y evtest
-  else
-    echo "Unsupported distribution. Please install evtest manually."
-    exit 1
-  fi
-  echo "evtest installation completed."
-}
-
-echo "installing dependency (evtest) ..."
-install_evtest
 
 tput sc
 echo -n " > [ "
@@ -150,7 +132,7 @@ while true; do
     fi
     ;;
   'B')
-    if [ "$selected2" -eq 2 ]; then
+    if [ "$selected3" -eq 2 ]; then
       let "selected3=1"
     else
       let "selected3=selected3+1"
@@ -265,6 +247,12 @@ echo "                                                            "
 tput rc
 
 if [ "$selected2" -eq 2 ]; then
+
+  rm "LICENSE"
+  rm "README.md"
+  rm "Resources/IMG_8531.png"
+  rmdir "Resources"
+
   echo "Everythings all set! Thank you for using Bill-Breaker. You can edit 'ondetect.sh' to customize what happens on detection further"
   exit 1
 fi
@@ -302,3 +290,7 @@ sudo systemctl start "$SERVICE_NAME"
 
 echo "Service '$SERVICE_NAME' installed and started successfully!"
 echo "Everythings all set! Thank you for using Bill-Breaker. You can edit 'ondetect.sh' to customize what happens on detection further"
+rm "LICENSE"
+rm "README.md"
+rm "Resources/IMG_8531.png"
+rmdir "Resources"
